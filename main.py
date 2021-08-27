@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 from keras.datasets import cifar100
 from keras.models import Sequential
-from keras.layers import Dense, Flatten
+from keras.layers import Dense, Flatten, Dropout
 from keras.utils import np_utils
 from keras.layers import Conv2D, MaxPooling2D
+from keras.layers.normalization import BatchNormalization
 
 def main():
     # loading dataset
@@ -27,9 +28,20 @@ def main():
 
     # Creating classifier
     classifier = Sequential()
-    classifier.add(Conv2D(32, (3,3), input_shape=(28, 28, 1), activation = 'relu')) #recommended start with 64 kernels instead of 32
+    classifier.add(Conv2D(32, (3,3), input_shape=(28, 28, 1),
+                   activation = 'relu')) #recommended start with 64 kernels instead of 32
+
+    classifier.add(BatchNormalization())
 
     #Pooling
+    classifier.add(MaxPooling2D(pool_size = (2,2)))
+
+    #Flattening
+    #classifier.add(Flatten())
+
+    #Addition of one more convolution layer
+    classifier.add(Conv2D(32, (3,3), activation = 'relu'))
+    classifier.add(BatchNormalization())
     classifier.add(MaxPooling2D(pool_size = (2,2)))
 
     #Flattening
@@ -37,6 +49,13 @@ def main():
 
     #Dense Neural Net
     classifier.add(Dense(units = 128, activation = 'relu'))
+
+    classifier.add(Dropout(0.2)) #Avoid overfitting
+
+    classifier.add(Dense(units = 128, activation = 'relu')) #hidden layer
+
+    classifier.add(Dropout(0.2)) #Avoid overfitting
+
     classifier.add(Dense(units = 10, activation = 'softmax')) #output layer
     classifier.compile(loss = 'categorical_crossentropy',
                        optimizer = 'adam', metrics = ['accuracy'])
