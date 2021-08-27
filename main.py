@@ -1,16 +1,29 @@
-# This is a sample Python script.
+import matplotlib.pyplot as plt
+from keras.datasets import cifar100
+from keras.models import Sequential
+from keras.layers import Dense, Flatten
+from keras.utils import np_utils
+from keras.layers import Conv2D, MaxPooling2D
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+def main():
+    (X_training, y_training), (X_test, y_test) = cifar100.load_data()
+    plt.imshow(X_training[1], cmap = 'gray') # Show image, cmap = gray remove the color of the image
+    plt.title('Class ' + str(y_training[1])) # Class of the image
 
+    predictors_training = X_training.reshape(X_training.shape[0], 32, 32, 1)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    predictors_test = X_test.reshape(X_test.shape[0], 32, 32, 1)
+    predictors_training = predictors_training.astype('float32')
+    predictors_test = predictors_test.astype('float32')
+
+    predictors_training /= 255
+    predictors_test /= 255
+
+    class_training = np_utils.to_categorical(y_treinamento, 100)
+    class_test = np_utils.to_categorical(y_test, 100)
+
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
