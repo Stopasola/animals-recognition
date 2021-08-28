@@ -57,11 +57,12 @@ def main():
 
     classifier.add(Dropout(0.2)) #Avoid overfitting
 
-    classifier.add(Dense(units = 10, activation = 'softmax')) #output layer
+    classifier.add(Dense(units = 100, activation = 'softmax')) #output layer
     classifier.compile(loss = 'categorical_crossentropy',
                        optimizer = 'adam', metrics = ['accuracy'])
 
-    predictors_training = np_utils.to_categorical(predictors_training)
+    predictors_training = np_utils.to_categorical(predictors_training, 100)
+    class_training = np_utils.to_categorical(class_training, 100)
 
     classifier.fit(predictors_training, class_training,
                    batch_size = 128, epochs = 5,
