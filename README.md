@@ -167,9 +167,7 @@ resultados poderiam atingir melhor acurácia.
 ## Referências bibliográficas
 
 [1] A Comprehensive Guide to Convolutional Neural Networks. Disponível em
-[<https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-n
-etworks-the-eli5-way-3bd2b1164a53>](https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-n
-etworks-the-eli5-way-3bd2b1164a53). Acesso em: 27/08/2021.
+[<https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53>](https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53). Acesso em: 27/08/2021.
 
 [2] Animal Image Dataset (DOG, CAT and Panda). Kaggle, 2021. Disponível em:
 <[https://www.kaggle.com/ashishsaxena2209/animal-image-datasetdog-cat-and-panda](https://www.kaggle.com/ashishsaxena2209/animal-image-datasetdog-cat-and-panda)>. Acesso em: 25/08/2021.
